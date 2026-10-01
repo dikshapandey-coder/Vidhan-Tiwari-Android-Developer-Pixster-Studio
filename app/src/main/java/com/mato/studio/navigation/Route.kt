@@ -1,6 +1,6 @@
 package com.mato.studio.navigation
 
-sealed interface Route{
-    data object Onboarding: Route
-    data object CalculatorScreen: Route
+sealed class Route(val route: String) {
+    data object Onboarding : Route("onboarding")
+    data object Home : Route("home")
 }

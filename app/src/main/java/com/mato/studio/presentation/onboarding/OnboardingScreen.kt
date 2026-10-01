@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.ParagraphStyle
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -30,27 +31,28 @@ import androidx.compose.ui.unit.sp
 import com.mato.studio.R
 
 @Composable
-fun OnBoardingScreen(onStarted:()->Unit) {
-
+fun OnBoardingScreen(onStarted: () -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp, vertical = 60.dp),
-        horizontalAlignment= Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 20.dp, vertical = 60.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
 
+        val coloredString = stringResource(R.string.onboarding_mid)
         val annotatedString = buildAnnotatedString {
-            append("Instantly Convert between over ")
+            append(stringResource(R.string.onboarding_prefix))
 
-            withStyle(style = ParagraphStyle(textAlign = TextAlign.Center)) {
-                withStyle(style = SpanStyle(color = Color.Blue)) {
-                    append("150 currencies")
-                }
+            withStyle(style = SpanStyle(color = Color.Blue)) {
+                append(coloredString)
             }
 
-            append(". Currency convert is your one stop solution for effortless currency conversion.")
+            append(stringResource(R.string.onboarding_suffix))
         }
+
         Text(
-            text = "Welcome to \nCurrency Convert!",
+            text = stringResource(R.string.onboarding_title),
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold
@@ -58,8 +60,9 @@ fun OnBoardingScreen(onStarted:()->Unit) {
 
         Spacer(modifier = Modifier.height(60.dp))
 
-        Image(painter = painterResource(id = R.drawable.illustrator),
-            contentDescription = "Onboarding",
+        Image(
+            painter = painterResource(id = R.drawable.illustrator),
+            contentDescription = "onBoarding",
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.FillWidth
         )
@@ -78,20 +81,16 @@ fun OnBoardingScreen(onStarted:()->Unit) {
 
         Button(
             onClick = onStarted,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(60.dp),
             shape = RoundedCornerShape(15.dp),
-            colors = ButtonColors(
+            colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Blue,
-                contentColor = Color.White,
-                disabledContainerColor = Color.Gray,
-                disabledContentColor = Color.Gray
+                contentColor = Color.White
             )
         ) {
-            Text(text = "Get Started")
+            Text(text = stringResource(R.string.get_started))
         }
-
     }
-
-    
 }
