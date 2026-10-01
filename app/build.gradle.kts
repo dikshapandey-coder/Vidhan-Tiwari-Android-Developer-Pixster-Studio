@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -8,6 +11,7 @@ android {
     compileSdk {
         version = release(37)
     }
+
 
     defaultConfig {
         applicationId = "com.mato.studio"
@@ -53,4 +57,11 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     implementation(libs.retrofit)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.room3.runtime)
+    ksp(libs.androidx.room3.compiler)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 }
