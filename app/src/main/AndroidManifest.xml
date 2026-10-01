@@ -12,14 +12,13 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
-
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp.Splash">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Studio"
+            android:theme="@style/Theme.MyApp.Splash"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

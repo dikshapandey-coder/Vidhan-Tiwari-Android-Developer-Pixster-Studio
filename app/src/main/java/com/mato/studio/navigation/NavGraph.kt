@@ -1,8 +1,6 @@
 package com.mato.studio.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -14,10 +12,10 @@ import com.mato.studio.presentation.onboarding.OnboardingViewModel
 
 @Composable
 fun NavGraph(
+    hasSeenOnboarding: Boolean,
     modifier: Modifier = Modifier,
     onBoardingViewModel: OnboardingViewModel = hiltViewModel()
 ) {
-    val hasSeenOnboarding by onBoardingViewModel.hasSeenOnboarding.collectAsState(initial = false)
     val startDestination = if (hasSeenOnboarding) Route.Home.route else Route.Onboarding.route
 
     val navController = rememberNavController()
